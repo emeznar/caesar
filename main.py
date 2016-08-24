@@ -28,15 +28,15 @@ class Index(webapp2.RequestHandler):
 
 #draw coded information on a page
     def post(self):
+        rottext = self.request.get("text")
         text = cgi.escape(self.request.get("text"), quote=True)
-        #TODO: add something to replace the ; here
-        text = text.replace("&lt", "<")
+        '''text = text.replace("&lt", "<")
         text = text.replace("&gt", ">")
         text = text.replace("&amp", "&")
-        text = text.replace(";", "")
+        text = text.replace(";", "")'''
 
         rotnumber = self.request.get("rotnumber")
-        text = encrypt(text, int(rotnumber))
+        text = encrypt(rottext, int(rotnumber))
 
         self.write_form(text,rotnumber)
 
